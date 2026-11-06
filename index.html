@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio de Malik Ben Mechichi, étudiant BTS SIO SLAM en recherche d’alternance en développement.">
+<title>Malik Ben Mechichi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; projects read like a branch history, each with its real commits */
+:root{
+  --bg:#F3F5FA;
+  --surface:#FFFFFF;
+  --ink:#141A2E;
+  --muted:#5A6380;
+  --line:#D9DEEA;
+  --accent:#2747D6;
+  --accent-soft:#E3E8FB;
+  --warm:#D9621F;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1220; --surface:#161B2D; --ink:#E8EBF5; --muted:#9AA3BF; --line:#2A3150;
+    --accent:#7F96FF; --accent-soft:#1E2747; --warm:#F08A4B; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1220; --surface:#161B2D; --ink:#E8EBF5; --muted:#9AA3BF; --line:#2A3150;
+  --accent:#7F96FF; --accent-soft:#1E2747; --warm:#F08A4B; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:60rem;margin:0 auto;padding-block:3rem 4rem;display:grid;gap:4.5rem}
+a{color:var(--accent)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* hero */
+.hero{display:grid;gap:1.5rem}
+.status{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.8rem;color:var(--warm);
+  border:1px solid currentColor;border-radius:999px;padding:.25rem .75rem;width:fit-content}
+.status i{width:.5rem;height:.5rem;border-radius:50%;background:currentColor;display:block;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.status i{animation:none}}
+.hero h1{font-size:clamp(2.8rem,9vw,5.6rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{color:var(--accent)}
+.lede{font-size:1.2rem;max-width:40rem;color:var(--muted)}
+.lede strong{color:var(--ink);font-weight:600}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:500}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.1rem;border-radius:8px;font-weight:600;text-decoration:none;
+  border:1px solid var(--line);color:var(--ink);background:var(--surface);transition:transform .15s,border-color .15s}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn svg{width:1.1rem;height:1.1rem;fill:currentColor}
+.copy{font:inherit;cursor:pointer}
+
+/* sections */
+section{display:grid;gap:1.75rem}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:.75rem}
+.head h2{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700}
+
+/* projects as branches */
+.repos{display:grid;gap:1.25rem;position:relative}
+.repo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.5rem;display:grid;gap:1rem;min-width:0}
+.repo-top{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:flex-start}
+.repo h3{font-size:1.45rem;font-weight:700}
+.repo .path{font-family:var(--mono);font-size:.8rem;color:var(--muted);word-break:break-all}
+.repo p.desc{max-width:42rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-family:var(--mono);font-size:.75rem;padding:.15rem .55rem;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.vis{font-family:var(--mono);font-size:.72rem;padding:.15rem .55rem;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.vis.pub{border-color:var(--accent);color:var(--accent)}
+.log{font-family:var(--mono);font-size:.8rem;border-left:2px solid var(--line);padding-left:1rem;display:grid;gap:.35rem;min-width:0}
+.log div{display:grid;grid-template-columns:auto 1fr;gap:.75rem;position:relative}
+.log div::before{content:"";position:absolute;left:calc(-1rem - 5px);top:.45rem;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.log time{color:var(--muted);font-variant-numeric:tabular-nums}
+.log span{min-width:0;overflow-wrap:anywhere}
+.repo-foot{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+.repo-foot .note{font-size:.85rem;color:var(--muted)}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.25rem}
+
+/* timeline */
+.rows{display:grid;gap:1.5rem}
+.row{display:grid;grid-template-columns:11rem 1fr;gap:1.5rem}
+.row .when{font-family:var(--mono);font-size:.85rem;color:var(--muted);padding-top:.2rem}
+.row h3{font-size:1.2rem;font-weight:700;margin-bottom:.35rem}
+.row ul{margin:.5rem 0 0;padding-left:1.1rem;display:grid;gap:.3rem}
+@media (max-width:600px){.row{grid-template-columns:1fr;gap:.25rem}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.5rem 2rem}
+.skill h3{font-family:var(--mono);font-size:.78rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.skill p{font-weight:500}
+.side{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:2rem}
+.side ul{list-style:none;margin:.5rem 0 0;padding:0;display:grid;gap:.35rem}
+.lvl{font-family:var(--mono);font-size:.8rem;color:var(--accent);margin-left:.4rem}
+
+footer{border-top:1px solid var(--line);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;color:var(--muted);font-size:.9rem}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="status"><i></i>Disponible pour une alternance</span>
+    <h1>Malik<br><span>Ben Mechichi</span></h1>
+    <p class="lede">Étudiant en <strong>BTS SIO option SLAM</strong> au lycée Robert Schuman. Je développe des applications web en PHP et Java, et je m'intéresse aux <strong>agents IA</strong>. Je cherche une alternance en développement informatique.</p>
+    <div class="facts">
+      <span>rythme <b>3 j entreprise / 2 j école</b></span>
+      <span>basé à <b>Dugny (93)</b></span>
+      <span>âge <b>19 ans</b></span>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/malikbm2075-code" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        Mon GitHub
+      </a>
+      <button class="btn copy" id="copy-mail" type="button">malikbm2075@gmail.com <span class="label" id="copy-state">copier</span></button>
+    </div>
+  </header>
+
+  <section id="projets">
+    <div class="head"><h2>Projets d'école</h2><span class="label">git log --author=malik</span></div>
+    <div class="repos">
+
+      <article class="repo">
+        <div class="repo-top">
+          <div>
+            <h3>Site du lycée (LPRS)</h3>
+            <div class="path">ProgrammeurTomSeth/LPRS</div>
+          </div>
+          <span class="vis pub">public</span>
+        </div>
+        <p class="desc">Site web du lycée Robert Schuman réalisé en équipe, avec un espace d'administration, la gestion des utilisateurs, des événements et un forum. J'ai développé la partie administrateur : le tableau de bord, la gestion des statuts des comptes et la gestion des événements.</p>
+        <div class="tags"><span class="tag">PHP</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span><span class="tag">MVC / repository</span></div>
+        <div class="log" aria-label="Quelques-uns de mes commits">
+          <div><time>2026-11-03</time><span>finalisation de la gestion des événements</span></div>
+          <div><time>2026-10-28</time><span>simplification du code, partie désactivation des statuts</span></div>
+          <div><time>2026-10-13</time><span>ajout de la page admin et du traitement admin</span></div>
+          <div><time>2026-09-29</time><span>création d'un tableau pour l'admin</span></div>
+        </div>
+        <div class="repo-foot">
+          <a class="btn" href="https://github.com/ProgrammeurTomSeth/LPRS" target="_blank" rel="noopener">Voir le dépôt sur GitHub →</a>
+        </div>
+      </article>
+
+      <article class="repo">
+        <div class="repo-top">
+          <div>
+            <h3>Site de cinéma</h3>
+            <div class="path">WilliamLemaire06/Cinema</div>
+          </div>
+          <span class="vis">dépôt privé</span>
+        </div>
+        <p class="desc">Application de gestion d'un cinéma réalisée en groupe (avril–mai 2026) : catalogue de films, séances, réservations, codes promo, encaissement et espace administrateur. J'ai codé la connexion utilisateur, la recherche de films et la page détail, en branchant l'<strong>API TMDB</strong> (The Movie Database) pour afficher les affiches et les informations des films.</p>
+        <div class="tags"><span class="tag">PHP</span><span class="tag">HTML / CSS</span><span class="tag">Bootstrap</span><span class="tag">jQuery</span><span class="tag">API REST</span><span class="tag">MySQL</span></div>
+        <div class="log" aria-label="Quelques-uns de mes commits">
+          <div><time>2026-05-05</time><span>ajout de l'API dans la barre de recherche et dans le détail film</span></div>
+          <div><time>2026-05-03</time><span>finalisation de la partie détail film</span></div>
+          <div><time>2026-04-23</time><span>ajout de la recherche d'un film</span></div>
+          <div><time>2026-04-10</time><span>ajout partie connexion</span></div>
+        </div>
+        <div class="repo-foot">
+          <a class="btn" href="https://github.com/malikbm2075-code" target="_blank" rel="noopener">Mon profil GitHub →</a>
+          <span class="note">Le dépôt du groupe est privé. Code disponible sur demande.</span>
+        </div>
+      </article>
+
+      <div class="mini">
+        <article class="repo">
+          <div class="repo-top"><h3>TodoListFX</h3><span class="vis">Java</span></div>
+          <p class="desc">Application de bureau JavaFX (septembre 2026) avec inscription, connexion et session utilisateur, reliée à une base de données.</p>
+          <div class="tags"><span class="tag">Java</span><span class="tag">JavaFX</span><span class="tag">FXML</span><span class="tag">Maven</span></div>
+        </article>
+        <article class="repo">
+          <div class="repo-top"><h3>Nuit de l'Info</h3><span class="vis">nov. 2025</span></div>
+          <p class="desc">Participation au défi national : concevoir et livrer un site web complet en une seule nuit, en équipe, au lycée Robert Schuman.</p>
+          <div class="tags"><span class="tag">Web</span><span class="tag">Travail en équipe</span></div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="parcours">
+    <div class="head"><h2>Parcours</h2><span class="label">expérience &amp; formation</span></div>
+    <div class="rows">
+      <div class="row">
+        <div class="when">Mai – juin 2026</div>
+        <div>
+          <h3>Stage · Conseil régional, Saint-Ouen</h3>
+          <ul>
+            <li>Création d'un module IA pour une application qui aide les personnes étrangères à s'adapter à la société française.</li>
+            <li>Automatisation des réseaux sociaux avec mon maître de stage.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="when">2025 – 2027</div>
+        <div>
+          <h3>BTS SIO option SLAM</h3>
+          <p>Lycée privé Robert Schuman · Solutions logicielles et applications métiers</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="when">Avant 2025</div>
+        <div>
+          <h3>Bac STMG</h3>
+          <p>Lycée EVE Éducation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="head"><h2>Compétences</h2><span class="label">stack</span></div>
+    <div class="skills">
+      <div class="skill"><h3>Langages</h3><p>PHP, Java, HTML5 / CSS3, JavaScript, Python, SQL</p></div>
+      <div class="skill"><h3>Frameworks</h3><p>jQuery, Bootstrap, JavaFX</p></div>
+      <div class="skill"><h3>Base de données</h3><p>MySQL</p></div>
+      <div class="skill"><h3>Réseau & système</h3><p>Apache, Debian, Windows (droits NTFS), Hyper-V, VirtualBox</p></div>
+      <div class="skill"><h3>Outils</h3><p>Git, suite JetBrains, IDLE, WordPress, suite Office</p></div>
+      <div class="skill"><h3>IA</h3><p>Développement d'agents IA, prompt engineering</p></div>
+    </div>
+    <div class="side">
+      <div><span class="label">Langues</span>
+        <ul><li>Anglais<span class="lvl">B1</span></li><li>Espagnol<span class="lvl">A2</span></li><li>Arabe<span class="lvl">A1</span></li></ul>
+      </div>
+      <div><span class="label">Savoir-être</span>
+        <ul><li>Travail en équipe</li><li>Autonome</li><li>Sens de l'organisation</li><li>Rigoureux</li></ul>
+      </div>
+      <div><span class="label">Centres d'intérêt</span>
+        <ul><li>Voyages : Italie, Espagne, Angleterre, Tunisie</li><li>Sport : football, basket, badminton, padel</li><li>Montage vidéo, stop motion, prompt IA</li><li>Création de sites web</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Malik Ben Mechichi · BTS SIO SLAM</span>
+    <a href="https://github.com/malikbm2075-code" target="_blank" rel="noopener">github.com/malikbm2075-code</a>
+  </footer>
+</div>
+
+<script>
+document.getElementById('copy-mail').addEventListener('click', function(){
+  var state = document.getElementById('copy-state');
+  var mail = 'malikbm2075@gmail.com';
+  navigator.clipboard.writeText(mail).then(function(){ state.textContent = 'copié'; })
+    .catch(function(){
+      var r = document.createRange(); r.selectNodeContents(this); var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      state.textContent = 'sélectionné';
+    }.bind(this));
+});
+</script>
+</body>
+</html>
